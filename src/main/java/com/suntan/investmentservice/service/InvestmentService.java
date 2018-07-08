@@ -33,6 +33,13 @@ public class InvestmentService {
 		List<InvestmentModel> investmentModels = investmentRepository.findByPerson(personModel);
 		return domainModelMapper.mapInvestmentModelToDomainList(investmentModels);
 	}
+
+	public List<InvestmentDomain> getDashboardContent(Integer personId) {
+		PersonModel personModel = new PersonModel();
+		personModel.setPersonId(personId);
+		List<InvestmentModel> investmentModels = investmentRepository.findByPerson(personModel);
+		return domainModelMapper.mapInvestmentModelToDomainList(investmentModels);
+	}
 	
 	public InvestmentDomain getInvestment(Integer investmentId) {
 		InvestmentModel investmentModel = investmentRepository.findByInvestmentId(investmentId);

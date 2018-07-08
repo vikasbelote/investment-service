@@ -36,7 +36,12 @@ public class InvestmentController {
 	public List<InvestmentDomain> myInvestment(@RequestParam("personId")Integer personId) {
 		return investmentService.getInvestments(personId);
 	}
-	
+
+    @GetMapping(value="getDashboardContent")
+    public List<InvestmentDomain> getDashboardContent(@RequestParam("personId")Integer personId) {
+        return investmentService.getDashboardContent(personId);
+    }
+
 	@GetMapping(value="get-investment")
 	public InvestmentDomain getInvestment(@RequestParam("investmentId")Integer investmentId) {
 		return investmentService.getInvestment(investmentId);

@@ -31,7 +31,7 @@ public class InvestmentModel {
 	private PersonModel person;
 	
 	@Column(name = "amount")
-	private String amount;
+	private Double amount;
 	
 	@Column(name = "investment_date")
 	@Temporal(TemporalType.TIMESTAMP)
