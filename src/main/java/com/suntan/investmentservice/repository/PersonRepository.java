@@ -6,4 +6,6 @@ import com.suntan.investmentservice.model.PersonModel;
 
 public interface PersonRepository extends JpaRepository<PersonModel, Integer>  {
 
+    PersonModel findByPersonId(Integer personId);
+
 }

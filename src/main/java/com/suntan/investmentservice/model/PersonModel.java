@@ -53,10 +53,36 @@ public class PersonModel implements Serializable {
 
     @Column(name = "middle_name")
     private String middleName;
-    
+
     @NotBlank
     @Column(name = "last_name")
     private String lastName;
+
+    @NotBlank
+    @Column(name = "referral_code")
+    private String referralCode;
+
+    @NotBlank
+    @Column(name = "email_id")
+    private String emailId;
+
+    @Column(name = "alt_email_id")
+    private String alternateEmailId;
+
+    @NotBlank
+    @Column(name = "mobile_number")
+    private String mobileNumber;
+
+    @Column(name = "alt_mobile_number")
+    private String alternateMobileNumber;
+
+    @NotBlank
+    @Column(name = "pan_number")
+    private String panNumber;
+
+    @NotBlank
+    @Column(name = "aadhar_number")
+    private String aadharNumber;
     
     @OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")

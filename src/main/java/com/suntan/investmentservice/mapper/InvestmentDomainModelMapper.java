@@ -1,5 +1,6 @@
 package com.suntan.investmentservice.mapper;
 
+import java.time.ZoneId;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,6 +36,10 @@ public class InvestmentDomainModelMapper {
 		investmentDomain.setPlan(investmentModel.getPlan());
 		investmentDomain.setTenure(investmentModel.getTenure());
 		investmentDomain.setInvestmentDate(investmentModel.getInvestmentDate());
+		investmentDomain.setInvestmentLocalDate(investmentModel.getInvestmentDate()
+				.toInstant()
+				.atZone(ZoneId.systemDefault())
+				.toLocalDate());
 		investmentDomain.setInvestmentId(investmentModel.getInvestmentId());
 		investmentDomain.setOutcome(investmentModel.getOutcome());
 		investmentDomain.setStatus(investmentModel.getStatus());

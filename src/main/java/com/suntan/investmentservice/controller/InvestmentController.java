@@ -1,33 +1,31 @@
 package com.suntan.investmentservice.controller;
 
+import com.suntan.investmentservice.domain.InvestmentDomain;
+import com.suntan.investmentservice.domain.PersonDomain;
+import com.suntan.investmentservice.service.InvestmentService;
+import com.suntan.investmentservice.service.ProfileService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.suntan.investmentservice.domain.InvestmentDomain;
-import com.suntan.investmentservice.model.InvestmentModel;
-import com.suntan.investmentservice.model.PersonModel;
-import com.suntan.investmentservice.service.InvestmentService;
-
+@CrossOrigin(origins = "*")
 @RestController
 public class InvestmentController {
 	
 	@Autowired
 	private InvestmentService investmentService;
-	
+
+	@Autowired
+	private ProfileService profileService;
+
 	@GetMapping(value="health-check")
 	public String healthCheck() {
-		return "Hey, Hi I am inevestservice";
+		return "Hey, Hi I am investment service";
 	}
 	
 	@PostMapping(value = "add-investment")
 	public String addInvestment(@RequestBody InvestmentDomain investment) {
-		
 		investmentService.saveInvestment(investment);
 		return "Data saved successfuly " + investment.getAmount();
 	}
@@ -35,6 +33,11 @@ public class InvestmentController {
 	@GetMapping(value="my-investments")
 	public List<InvestmentDomain> myInvestment(@RequestParam("personId")Integer personId) {
 		return investmentService.getInvestments(personId);
+	}
+
+	@GetMapping(value="my-profile")
+	public PersonDomain myProfile(@RequestParam("personId")Integer personId) {
+		return profileService.getPersonDetails(personId);
 	}
 
     @GetMapping(value="getDashboardContent")
@@ -45,5 +48,11 @@ public class InvestmentController {
 	@GetMapping(value="get-investment")
 	public InvestmentDomain getInvestment(@RequestParam("investmentId")Integer investmentId) {
 		return investmentService.getInvestment(investmentId);
+	}
+
+	@PostMapping(value = "edit-profile")
+	public String editProfile(@RequestBody PersonDomain personDomain) {
+		profileService.editProfile(personDomain);
+		return "Data saved successfuly for " + personDomain.getFirstName();
 	}
 }
